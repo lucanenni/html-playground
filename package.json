@@ -1,0 +1,22 @@
+{
+  "name": "html-playground",
+  "version": "0.1.0",
+  "description": "Playground live per HTML/CSS/JS in stile CodePen, in un unico file statico, con anteprima live, temi ed export.",
+  "private": true,
+  "license": "MIT",
+  "author": "lucanenni",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx --yes serve . -l 5173",
+    "dev": "npx --yes serve . -l 5173"
+  },
+  "keywords": [
+    "codepen",
+    "code-editor",
+    "html",
+    "css",
+    "javascript",
+    "live-preview",
+    "single-file"
+  ]
+}
