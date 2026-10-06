@@ -5,378 +5,156 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HTML Playground — editor live</title>
 <style>
-/* ══ temi highlight.js (tutti incorporati offline) ══ */
+/* ══ temi highlight.js (scoped per tema) ══ */
+/* dracula */
+.editor-wrap:not([class*="theme-"]) .hljs { display: block; overflow-x: auto; padding: 0.5em; background: #282a36; }
+.editor-wrap:not([class*="theme-"]) .hljs-keyword,
+.editor-wrap:not([class*="theme-"]) .hljs-selector-tag,
+.editor-wrap:not([class*="theme-"]) .hljs-literal,
+.editor-wrap:not([class*="theme-"]) .hljs-section,
+.editor-wrap:not([class*="theme-"]) .hljs-link { color: #8be9fd; }
+.editor-wrap:not([class*="theme-"]) .hljs-function .hljs-keyword { color: #ff79c6; }
+.editor-wrap:not([class*="theme-"]) .hljs,
+.editor-wrap:not([class*="theme-"]) .hljs-subst { color: #f8f8f2; }
+.editor-wrap:not([class*="theme-"]) .hljs-string,
+.editor-wrap:not([class*="theme-"]) .hljs-title,
+.editor-wrap:not([class*="theme-"]) .hljs-name,
+.editor-wrap:not([class*="theme-"]) .hljs-type,
+.editor-wrap:not([class*="theme-"]) .hljs-attribute,
+.editor-wrap:not([class*="theme-"]) .hljs-symbol,
+.editor-wrap:not([class*="theme-"]) .hljs-bullet,
+.editor-wrap:not([class*="theme-"]) .hljs-addition,
+.editor-wrap:not([class*="theme-"]) .hljs-variable,
+.editor-wrap:not([class*="theme-"]) .hljs-template-tag,
+.editor-wrap:not([class*="theme-"]) .hljs-template-variable { color: #f1fa8c; }
+.editor-wrap:not([class*="theme-"]) .hljs-comment,
+.editor-wrap:not([class*="theme-"]) .hljs-quote,
+.editor-wrap:not([class*="theme-"]) .hljs-deletion,
+.editor-wrap:not([class*="theme-"]) .hljs-meta { color: #6272a4; }
+.editor-wrap:not([class*="theme-"]) .hljs-keyword,
+.editor-wrap:not([class*="theme-"]) .hljs-selector-tag,
+.editor-wrap:not([class*="theme-"]) .hljs-literal,
+.editor-wrap:not([class*="theme-"]) .hljs-title,
+.editor-wrap:not([class*="theme-"]) .hljs-section,
+.editor-wrap:not([class*="theme-"]) .hljs-doctag,
+.editor-wrap:not([class*="theme-"]) .hljs-type,
+.editor-wrap:not([class*="theme-"]) .hljs-name,
+.editor-wrap:not([class*="theme-"]) .hljs-strong { font-weight: bold; }
+.editor-wrap:not([class*="theme-"]) .hljs-emphasis { font-style: italic; }
 
-/* dracula (default) */
-/* ── highlight.js tema dracula ── */
-/*
+/* atom */
+.theme-atom .hljs { display: block; overflow-x: auto; padding: 0.5em; color: #abb2bf; background: #282c34; }
+.theme-atom .hljs-comment,
+.theme-atom .hljs-quote { color: #5c6370; font-style: italic; }
+.theme-atom .hljs-doctag,
+.theme-atom .hljs-keyword,
+.theme-atom .hljs-formula { color: #c678dd; }
+.theme-atom .hljs-section,
+.theme-atom .hljs-name,
+.theme-atom .hljs-selector-tag,
+.theme-atom .hljs-deletion,
+.theme-atom .hljs-subst { color: #e06c75; }
+.theme-atom .hljs-literal { color: #56b6c2; }
+.theme-atom .hljs-string,
+.theme-atom .hljs-regexp,
+.theme-atom .hljs-addition,
+.theme-atom .hljs-attribute,
+.theme-atom .hljs-meta-string { color: #98c379; }
+.theme-atom .hljs-built_in,
+.theme-atom .hljs-class .theme-atom .hljs-title { color: #e6c07b; }
+.theme-atom .hljs-attr,
+.theme-atom .hljs-variable,
+.theme-atom .hljs-template-variable,
+.theme-atom .hljs-type,
+.theme-atom .hljs-selector-class,
+.theme-atom .hljs-selector-attr,
+.theme-atom .hljs-selector-pseudo,
+.theme-atom .hljs-number { color: #d19a66; }
+.theme-atom .hljs-symbol,
+.theme-atom .hljs-bullet,
+.theme-atom .hljs-link,
+.theme-atom .hljs-meta,
+.theme-atom .hljs-selector-id,
+.theme-atom .hljs-title { color: #61aeee; }
+.theme-atom .hljs-emphasis { font-style: italic; }
+.theme-atom .hljs-strong { font-weight: bold; }
+.theme-atom .hljs-link { text-decoration: underline; }
 
-Dracula Theme v1.2.0
-
-https://github.com/zenorocha/dracula-theme
-
-Copyright 2015, All rights reserved
-
-Code licensed under the MIT license
-http://zenorocha.mit-license.org
-
-@author Éverton Ribeiro <nuxlli@gmail.com>
-@author Zeno Rocha <hi@zenorocha.com>
-
-*/
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #282a36;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-section,
-.hljs-link {
-  color: #8be9fd;
-}
-
-.hljs-function .hljs-keyword {
-  color: #ff79c6;
-}
-
-.hljs,
-.hljs-subst {
-  color: #f8f8f2;
-}
-
-.hljs-string,
-.hljs-title,
-.hljs-name,
-.hljs-type,
-.hljs-attribute,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition,
-.hljs-variable,
-.hljs-template-tag,
-.hljs-template-variable {
-  color: #f1fa8c;
-}
-
-.hljs-comment,
-.hljs-quote,
-.hljs-deletion,
-.hljs-meta {
-  color: #6272a4;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-title,
-.hljs-section,
-.hljs-doctag,
-.hljs-type,
-.hljs-name,
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-
-/* ── reset & variabili ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-
-/* atom-one-dark */
-.theme-atom /*
-
-Atom One Dark by Daniel Gamage
-Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
-
-base:    #282c34
-mono-1:  #abb2bf
-mono-2:  #818896
-mono-3:  #5c6370
-hue-1:   #56b6c2
-hue-2:   #61aeee
-hue-3:   #c678dd
-hue-4:   #98c379
-hue-5:   #e06c75
-hue-5-2: #be5046
-hue-6:   #d19a66
-hue-6-2: #e6c07b
-
-*/
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  color: #abb2bf;
-  background: #282c34;
-}
-
-.hljs-comment,
-.hljs-quote {
-  color: #5c6370;
-  font-style: italic;
-}
-
-.hljs-doctag,
-.hljs-keyword,
-.hljs-formula {
-  color: #c678dd;
-}
-
-.hljs-section,
-.hljs-name,
-.hljs-selector-tag,
-.hljs-deletion,
-.hljs-subst {
-  color: #e06c75;
-}
-
-.hljs-literal {
-  color: #56b6c2;
-}
-
-.hljs-string,
-.hljs-regexp,
-.hljs-addition,
-.hljs-attribute,
-.hljs-meta-string {
-  color: #98c379;
-}
-
-.hljs-built_in,
-.hljs-class .theme-atom .hljs-title {
-  color: #e6c07b;
-}
-
-.hljs-attr,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-type,
-.hljs-selector-class,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-number {
-  color: #d19a66;
-}
-
-.hljs-symbol,
-.hljs-bullet,
-.hljs-link,
-.hljs-meta,
-.hljs-selector-id,
-.hljs-title {
-  color: #61aeee;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-link {
-  text-decoration: underline;
-}
-
-
-/* github (chiaro) */
-.theme-github /*
-
-github.com style (c) Vasily Polovnyov <vast@whiteants.net>
-
-*/
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  color: #333;
-  background: #f8f8f8;
-}
-
-.hljs-comment,
-.hljs-quote {
-  color: #998;
-  font-style: italic;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-subst {
-  color: #333;
-  font-weight: bold;
-}
-
-.hljs-number,
-.hljs-literal,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag .theme-github .hljs-attr {
-  color: #008080;
-}
-
-.hljs-string,
-.hljs-doctag {
-  color: #d14;
-}
-
-.hljs-title,
-.hljs-section,
-.hljs-selector-id {
-  color: #900;
-  font-weight: bold;
-}
-
-.hljs-subst {
-  font-weight: normal;
-}
-
-.hljs-type,
-.hljs-class .theme-github .hljs-title {
-  color: #458;
-  font-weight: bold;
-}
-
-.hljs-tag,
-.hljs-name,
-.hljs-attribute {
-  color: #000080;
-  font-weight: normal;
-}
-
-.hljs-regexp,
-.hljs-link {
-  color: #009926;
-}
-
-.hljs-symbol,
-.hljs-bullet {
-  color: #990073;
-}
-
-.hljs-built_in,
-.hljs-builtin-name {
-  color: #0086b3;
-}
-
-.hljs-meta {
-  color: #999;
-  font-weight: bold;
-}
-
-.hljs-deletion {
-  background: #fdd;
-}
-
-.hljs-addition {
-  background: #dfd;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
+/* github */
+.theme-github .hljs { display: block; overflow-x: auto; padding: 0.5em; color: #333; background: #f8f8f8; }
+.theme-github .hljs-comment,
+.theme-github .hljs-quote { color: #998; font-style: italic; }
+.theme-github .hljs-keyword,
+.theme-github .hljs-selector-tag,
+.theme-github .hljs-subst { color: #333; font-weight: bold; }
+.theme-github .hljs-number,
+.theme-github .hljs-literal,
+.theme-github .hljs-variable,
+.theme-github .hljs-template-variable,
+.theme-github .hljs-attr { color: #008080; }
+.theme-github .hljs-string,
+.theme-github .hljs-doctag { color: #d14; }
+.theme-github .hljs-title,
+.theme-github .hljs-section,
+.theme-github .hljs-selector-id { color: #900; font-weight: bold; }
+.theme-github .hljs-subst { font-weight: normal; }
+.theme-github .hljs-type,
+.theme-github .hljs-class .theme-github .hljs-title { color: #458; font-weight: bold; }
+.theme-github .hljs-tag,
+.theme-github .hljs-name,
+.theme-github .hljs-attribute { color: #000080; font-weight: normal; }
+.theme-github .hljs-regexp,
+.theme-github .hljs-link { color: #009926; }
+.theme-github .hljs-symbol,
+.theme-github .hljs-bullet { color: #990073; }
+.theme-github .hljs-built_in,
+.theme-github .hljs-builtin-name { color: #0086b3; }
+.theme-github .hljs-meta { color: #999; font-weight: bold; }
+.theme-github .hljs-deletion { background: #fdd; }
+.theme-github .hljs-addition { background: #dfd; }
+.theme-github .hljs-emphasis { font-style: italic; }
+.theme-github .hljs-strong { font-weight: bold; }
 
 /* monokai */
-.theme-monokai /*
-
-Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
-
-*/
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #23241f;
-}
-
-.hljs,
-.hljs-tag,
-.hljs-subst {
-  color: #f8f8f2;
-}
-
-.hljs-strong,
-.hljs-emphasis {
-  color: #a8a8a2;
-}
-
-.hljs-bullet,
-.hljs-quote,
-.hljs-number,
-.hljs-regexp,
-.hljs-literal,
-.hljs-link {
-  color: #ae81ff;
-}
-
-.hljs-code,
-.hljs-title,
-.hljs-section,
-.hljs-selector-class {
-  color: #a6e22e;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-name,
-.hljs-attr {
-  color: #f92672;
-}
-
-.hljs-symbol,
-.hljs-attribute {
-  color: #66d9ef;
-}
-
-.hljs-params,
-.hljs-class .theme-monokai .hljs-title {
-  color: #f8f8f2;
-}
-
-.hljs-string,
-.hljs-type,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-selector-id,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-addition,
-.hljs-variable,
-.hljs-template-variable {
-  color: #e6db74;
-}
-
-.hljs-comment,
-.hljs-deletion,
-.hljs-meta {
-  color: #75715e;
-}
-
+.theme-monokai .hljs { display: block; overflow-x: auto; padding: 0.5em; background: #23241f; }
+.theme-monokai .hljs,
+.theme-monokai .hljs-tag,
+.theme-monokai .hljs-subst { color: #f8f8f2; }
+.theme-monokai .hljs-strong,
+.theme-monokai .hljs-emphasis { color: #a8a8a2; }
+.theme-monokai .hljs-bullet,
+.theme-monokai .hljs-quote,
+.theme-monokai .hljs-number,
+.theme-monokai .hljs-regexp,
+.theme-monokai .hljs-literal,
+.theme-monokai .hljs-link { color: #ae81ff; }
+.theme-monokai .hljs-code,
+.theme-monokai .hljs-title,
+.theme-monokai .hljs-section,
+.theme-monokai .hljs-selector-class { color: #a6e22e; }
+.theme-monokai .hljs-strong { font-weight: bold; }
+.theme-monokai .hljs-emphasis { font-style: italic; }
+.theme-monokai .hljs-keyword,
+.theme-monokai .hljs-selector-tag,
+.theme-monokai .hljs-name,
+.theme-monokai .hljs-attr { color: #f92672; }
+.theme-monokai .hljs-symbol,
+.theme-monokai .hljs-attribute { color: #66d9ef; }
+.theme-monokai .hljs-params,
+.theme-monokai .hljs-class .theme-monokai .hljs-title { color: #f8f8f2; }
+.theme-monokai .hljs-string,
+.theme-monokai .hljs-type,
+.theme-monokai .hljs-built_in,
+.theme-monokai .hljs-builtin-name,
+.theme-monokai .hljs-selector-id,
+.theme-monokai .hljs-selector-attr,
+.theme-monokai .hljs-selector-pseudo,
+.theme-monokai .hljs-addition,
+.theme-monokai .hljs-variable,
+.theme-monokai .hljs-template-variable { color: #e6db74; }
+.theme-monokai .hljs-comment,
+.theme-monokai .hljs-deletion,
+.theme-monokai .hljs-meta { color: #75715e; }
 
 /* ══ reset & variabili ══ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -578,6 +356,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);display
       <button class="dl-item" onclick="downloadZip()">&#128230; scarica ZIP</button>
     </div>
   </div>
+  <button class="btn" onclick="insertSkeleton()" title="Inserisce la struttura base di una pagina HTML">&#9783; struttura base</button>
   <button class="btn" onclick="clearAll()">&#x2715; pulisci</button>
 </div>
 
@@ -3358,7 +3137,7 @@ function xml(hljs) {
         ]
       },
       hljs.COMMENT(
-        /<!--/,
+        /<\!--/,
         /-->/,
         {
           relevance: 10
@@ -4720,7 +4499,7 @@ let currentTheme   = 'dracula';
 
 /* ── contenuti iniziali (usati solo se localStorage vuoto) ── */
 const INIT = {
-  html: `<!-- Benvenuto in CodeLab! -->
+  html: `<\!-- Benvenuto in CodeLab! -->
 <h1>Ciao, mondo!</h1>
 <p>Modifica HTML, CSS e JS: l'anteprima si aggiorna in tempo reale.</p>
 <button id="myBtn">Cliccami</button>`,
@@ -5015,7 +4794,7 @@ function formatHTML(src) {
   for (let part of parts) {
     part = part.trim();
     if (!part) continue;
-    if (part.startsWith('<!--')) {
+    if (part.startsWith('<\!--')) {
       out += '  '.repeat(indent) + part + '\n';
     } else if (part.startsWith('</')) {
       indent = Math.max(0, indent - 1);
@@ -5264,6 +5043,32 @@ function showToast(msg) {
   el.innerHTML = msg; el.classList.add('show');
   clearTimeout(showToast._t);
   showToast._t = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+/* ══ STRUTTURA BASE ══ */
+const SKELETON = `<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titolo della pagina</title>
+</head>
+<body>
+
+</body>
+</html>`;
+
+function insertSkeleton() {
+  const e = editors.find(x => x.id === 'html');
+  if (e.ta.value.trim() && !confirm("L'editor HTML contiene già del codice.\nVuoi sostituirlo con la struttura base?")) return;
+  e.ta.value = SKELETON;
+  syncHighlight(e); syncLineNums(e); updateLC(e.id, e.ta);
+  // cursore dentro il body
+  const pos = SKELETON.indexOf('<body>\n') + 7;
+  e.ta.focus(); e.ta.setSelectionRange(pos, pos);
+  scheduleSave();
+  runPreview();
+  showToast('Struttura base inserita');
 }
 
 /* ══ PULISCI ══ */
